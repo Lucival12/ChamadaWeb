@@ -1,0 +1,98 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChamadaWeb.View.MyListPageDetail"
+             BackgroundColor="White"
+             Title="Dados do Documento">
+              <ContentPage.ToolbarItems>
+                <ToolbarItem Activated="OnClickAsync" Text="Aprovar" Order="Primary" />
+              </ContentPage.ToolbarItems>
+  <Grid BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
+    <StackLayout>
+      <StackLayout Spacing="2"
+                   HorizontalOptions="FillAndExpand">
+        <Label  Text="Documento" TextColor="#555" FontSize="20" FontAttributes="Bold"/>
+        <Entry  x:Name="NumeroDocumento" Keyboard="Numeric" PlaceholderColor="#CCC"
+                FontSize="20" TextColor="#555" IsEnabled="false" />
+        <Label Text="Data Liberação" TextColor="#555" FontSize="20" FontAttributes="Bold"/>
+        <Entry  x:Name="DataLiberacao"  Keyboard="Default" FontSize="20"
+                PlaceholderColor="#CCC" TextColor="#555"  IsEnabled="false"/>
+        <Label Text="Fornecedor" TextColor="#555" FontSize="20" FontAttributes="Bold"/>
+        <Entry  x:Name="Fornecedor" Keyboard="Default" FontSize="20"
+                PlaceholderColor="#CCC" TextColor="#555"  IsEnabled="false"/>
+        <Label Text="Valor Total" TextColor="#555" FontSize="20" FontAttributes="Bold"/>
+        <Entry  x:Name="ValorTotal" Keyboard="Default" FontSize="20"
+                PlaceholderColor="#CCC" TextColor="#555"  IsEnabled="false"/>
+      </StackLayout>
+    </StackLayout>
+    <ListView ItemsSource="{Binding itensList}" SeparatorVisibility="None" Grid.Row="1" VerticalOptions="FillAndExpand">
+      <ListView.Header>
+        <Grid BackgroundColor="#000000" Padding="1" RowSpacing="0" ColumnSpacing="1">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <Label Text="Produto" HorizontalTextAlignment="Center" FontSize ="20" TextColor ="White" BackgroundColor="#666666" Grid.Column="0" Grid.Row="0" />
+          <Label Text="Qtd"  HorizontalTextAlignment="Center" FontSize ="20" TextColor ="White" BackgroundColor="#666666" Grid.Column="1" Grid.Row="0"/>
+          <Label Text="Prc Unitario" HorizontalTextAlignment="Center" FontSize ="20" TextColor ="White" BackgroundColor="#666666" Grid.Column="2" Grid.Row="0"/>
+          <Label Text="Vlr. Total"  HorizontalTextAlignment="Center" FontSize ="20" TextColor ="White" BackgroundColor="#666666" Grid.Column="3" Grid.Row="0"/>
+          <Label Text="Descrição"  HorizontalTextAlignment="Center" FontSize ="20" TextColor ="White" BackgroundColor="#666666" Grid.Column="4" Grid.Row="0"/>
+        </Grid>
+      </ListView.Header>
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <Grid Padding="1" RowSpacing="0" ColumnSpacing="1">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+              <Label Grid.Column="0"
+                     Grid.Row="1"
+                     FontSize ="19"
+                     BackgroundColor="#3498DB"
+                     TextColor ="White"
+                     Text="{Binding numeroProduto}"/>
+              <Label Grid.Column="1"
+                     Grid.Row="1"
+                     FontSize ="19"
+                     BackgroundColor="#3498DB"
+                     TextColor ="White"
+                     Text="{Binding quantidade}"/>
+              <Label Grid.Column="2"
+                     Grid.Row="1"
+                     TextColor ="White"
+                     FontSize ="19"
+                     BackgroundColor="#3498DB"
+                    Text="{Binding precoUnitatio}"/>
+              <Label Grid.Column="3"
+                     Grid.Row="1"
+                     TextColor ="White"
+                     FontSize ="19"
+                     BackgroundColor="#3498DB"
+                    Text="{Binding valorTotal}"/>
+              <Label Grid.Column="4"
+                     Grid.Row="1"
+                     TextColor ="White"
+                     FontSize ="19"
+                     BackgroundColor="#3498DB"
+                    Text="{Binding descricao}"/>
+            </Grid>
+          </ViewCell>
+          <!-- <ViewCell Text="" TextColor="Black"/>-->
+        </DataTemplate>
+      </ListView.ItemTemplate>
+      
+      
+    </ListView>
+
+  </Grid>
+  
+</ContentPage>

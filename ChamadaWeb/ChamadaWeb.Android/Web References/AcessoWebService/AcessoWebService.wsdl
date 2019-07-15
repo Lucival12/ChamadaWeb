@@ -1,0 +1,1915 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="Acesso" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="Acesso" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="Acesso">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="GetListSetorByUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="tns:Usuario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Usuario">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" nillable="true" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cpf" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Senha" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Version" type="s:base64Binary" />
+          <s:element minOccurs="1" maxOccurs="1" name="Adm" nillable="true" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Inativo" nillable="true" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="UsuarioSetorPrincipal" type="tns:UsuarioSetor" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mensagem" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UsuarioSetor">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" nillable="true" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="Principal" nillable="true" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="tns:Usuario" />
+          <s:element minOccurs="0" maxOccurs="1" name="Setor" type="tns:Setor" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Setor">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" nillable="true" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetListSetorByUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListSetorByUsuarioResult" type="tns:ArrayOfSetor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSetor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Setor" nillable="true" type="tns:Setor" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetListUsuariosBySetor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="setor" type="tns:Setor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListUsuariosBySetorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListUsuariosBySetorResult" type="tns:ArrayOfUsuario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUsuario">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Usuario" nillable="true" type="tns:Usuario" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetListUsuariosAtivosBySetor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="setor" type="tns:Setor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListUsuariosAtivosBySetorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListUsuariosAtivosBySetorResult" type="tns:ArrayOfUsuario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDropDownListSetor">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDropDownListSetorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDropDownListSetorResult" type="tns:ArrayOfSetor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDropDownListUsuario">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDropDownListUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDropDownListUsuarioResult" type="tns:ArrayOfUsuario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDropDownListUsuarioAtivo">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDropDownListUsuarioAtivoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDropDownListUsuarioAtivoResult" type="tns:ArrayOfUsuario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListUsuarioAtivo">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetListUsuarioAtivoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListUsuarioAtivoResult" type="tns:ArrayOfUsuario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListUsuario">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetListUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListUsuarioResult" type="tns:ArrayOfUsuario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListUsuarioByExemplo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="exemplo" type="tns:Usuario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListUsuarioByExemploResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListUsuarioByExemploResult" type="tns:ArrayOfUsuario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSetorById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" nillable="true" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSetorByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSetorByIdResult" type="tns:Setor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsuarioById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" nillable="true" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsuarioByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsuarioByIdResult" type="tns:Usuario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFirstUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="exemplo" type="tns:Usuario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFirstUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFirstUsuarioResult" type="tns:Usuario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFirstUsuarioAdm">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetFirstUsuarioAdmResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFirstUsuarioAdmResult" type="tns:Usuario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsuarioByExemplo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="exemplo" type="tns:Usuario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsuarioByExemploResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsuarioByExemploResult" type="tns:Usuario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SalvarUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="exemplo" type="tns:Usuario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SalvarUsuarioResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="exemplo" type="tns:Usuario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginResult" type="tns:Usuario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsuarioResult" type="tns:Usuario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HasPermissionOnButton">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sistema" type="tns:Sistema" />
+            <s:element minOccurs="1" maxOccurs="1" name="tela" type="tns:Tela" />
+            <s:element minOccurs="1" maxOccurs="1" name="botao" type="tns:Botao" />
+            <s:element minOccurs="0" maxOccurs="1" name="permissoesBotao" type="tns:ArrayOfPermissaoBotao" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="Sistema">
+        <s:restriction base="s:string">
+          <s:enumeration value="Nulo" />
+          <s:enumeration value="CadastroDeAtletas" />
+          <s:enumeration value="Analise" />
+          <s:enumeration value="EstoqueTI" />
+          <s:enumeration value="HelpDesk" />
+          <s:enumeration value="RH" />
+          <s:enumeration value="Acesso" />
+          <s:enumeration value="Nutricao" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="Tela">
+        <s:restriction base="s:string">
+          <s:enumeration value="Nulo" />
+          <s:enumeration value="AlterarAtleta" />
+          <s:enumeration value="ListarCartaoAtletas" />
+          <s:enumeration value="ListarAtleta" />
+          <s:enumeration value="ListarComposicao" />
+          <s:enumeration value="ListarUsuarioCategoria" />
+          <s:enumeration value="ListarEmpresa" />
+          <s:enumeration value="ListarIndicador" />
+          <s:enumeration value="ListarJogo" />
+          <s:enumeration value="ListarProcurador" />
+          <s:enumeration value="ListarMembroComissaoTecnica" />
+          <s:enumeration value="ListarSuspensao" />
+          <s:enumeration value="ListarTreino" />
+          <s:enumeration value="ListarContratoFormacao" />
+          <s:enumeration value="ListarContratoIntermediacao" />
+          <s:enumeration value="ListarContratoParceria" />
+          <s:enumeration value="ListarContratoDireitoDeImagem" />
+          <s:enumeration value="ListarContratoProfissional" />
+          <s:enumeration value="ListarTermoAjuste" />
+          <s:enumeration value="ListarAvaliacao" />
+          <s:enumeration value="RelatorioComparativoComposicao" />
+          <s:enumeration value="ListarCategoria" />
+          <s:enumeration value="ListarCidade" />
+          <s:enumeration value="ListarClube" />
+          <s:enumeration value="ListarCompeticao" />
+          <s:enumeration value="ListarGrupoAvaliacao" />
+          <s:enumeration value="ListarModeloContrato" />
+          <s:enumeration value="ListarTemporada" />
+          <s:enumeration value="ManterParametro" />
+          <s:enumeration value="AvaliacoesAtletaJogosTreinos" />
+          <s:enumeration value="AdicionarComposicao" />
+          <s:enumeration value="AdicionarUsuarioCategoria" />
+          <s:enumeration value="AdicionarEmpresa" />
+          <s:enumeration value="AdicionarIndicador" />
+          <s:enumeration value="AdicionarJogo" />
+          <s:enumeration value="AdicionarProcurador" />
+          <s:enumeration value="AdicionarMembroComissaoTecnica" />
+          <s:enumeration value="AdicionarSuspensao" />
+          <s:enumeration value="AdicionarTreino" />
+          <s:enumeration value="AdicionarContratoFormacao" />
+          <s:enumeration value="AdicionarContratoIntermediacao" />
+          <s:enumeration value="AdicionarContratoParceria" />
+          <s:enumeration value="AdicionarContratoDireitoDeImagem" />
+          <s:enumeration value="AdicionarContratoProfissional" />
+          <s:enumeration value="AdicionarTermoAjuste" />
+          <s:enumeration value="AdicionarAvaliacao" />
+          <s:enumeration value="AdicionarCategoria" />
+          <s:enumeration value="AdicionarCidade" />
+          <s:enumeration value="AdicionarClube" />
+          <s:enumeration value="AdicionarCompeticao" />
+          <s:enumeration value="AdicionarGrupoAvaliacao" />
+          <s:enumeration value="AdicionarModeloContrato" />
+          <s:enumeration value="AdicionarTemporada" />
+          <s:enumeration value="AlterarComposicao" />
+          <s:enumeration value="AlterarUsuarioCategoria" />
+          <s:enumeration value="AlterarEmpresa" />
+          <s:enumeration value="AlterarIndicador" />
+          <s:enumeration value="AlterarJogo" />
+          <s:enumeration value="AlterarProcurador" />
+          <s:enumeration value="AlterarMembroComissaoTecnica" />
+          <s:enumeration value="AlterarSuspensao" />
+          <s:enumeration value="AlterarTreino" />
+          <s:enumeration value="AlterarContratoFormacao" />
+          <s:enumeration value="AlterarContratoIntermediacao" />
+          <s:enumeration value="AlterarContratoParceria" />
+          <s:enumeration value="AlterarContratoDireitoDeImagem" />
+          <s:enumeration value="AlterarContratoProfissional" />
+          <s:enumeration value="AlterarTermoAjuste" />
+          <s:enumeration value="AlterarAvaliacao" />
+          <s:enumeration value="AlterarCategoria" />
+          <s:enumeration value="AlterarCidade" />
+          <s:enumeration value="AlterarClube" />
+          <s:enumeration value="AlterarCompeticao" />
+          <s:enumeration value="AlterarGrupoAvaliacao" />
+          <s:enumeration value="AlterarModeloContrato" />
+          <s:enumeration value="AlterarTemporada" />
+          <s:enumeration value="RelatorioCoposicaoCorporal" />
+          <s:enumeration value="AdicionarAtleta" />
+          <s:enumeration value="InserirCartao" />
+          <s:enumeration value="ListarCartao" />
+          <s:enumeration value="AlterarCartao" />
+          <s:enumeration value="DadosContratuais" />
+          <s:enumeration value="RelatorioAvaliacoesAtletaJogosTreinos" />
+          <s:enumeration value="AdicionarChamado" />
+          <s:enumeration value="AdicionarFeriado" />
+          <s:enumeration value="AlterarChamado" />
+          <s:enumeration value="AlterarFeriado" />
+          <s:enumeration value="Atendimento" />
+          <s:enumeration value="ListarChamado" />
+          <s:enumeration value="ListarFeriado" />
+          <s:enumeration value="AdicionarUsuarioComplemento" />
+          <s:enumeration value="AlterarUsuarioComplemento" />
+          <s:enumeration value="ListarUsuarioComplemento" />
+          <s:enumeration value="ReabrirChamado" />
+          <s:enumeration value="ListarPreCadastro" />
+          <s:enumeration value="AdicionarPreCadastro" />
+          <s:enumeration value="AlterarPreCadastro" />
+          <s:enumeration value="ListarInformacoesUsuario" />
+          <s:enumeration value="AlterarInformacoesUsuario" />
+          <s:enumeration value="AlterarComposicaoPreCadastro" />
+          <s:enumeration value="ListarComposicaoPreCadastro" />
+          <s:enumeration value="AdicionarComposicaoPreCadastro" />
+          <s:enumeration value="ListarProcesso" />
+          <s:enumeration value="AdicionarProcesso" />
+          <s:enumeration value="AlterarProcesso" />
+          <s:enumeration value="ListarPessoa" />
+          <s:enumeration value="AdicionarPessoa" />
+          <s:enumeration value="AlterarPessoa" />
+          <s:enumeration value="ManterConfig" />
+          <s:enumeration value="ListarContraCheque" />
+          <s:enumeration value="ImportarColaborador" />
+          <s:enumeration value="ImportarContraCheque" />
+          <s:enumeration value="ImportarRendimento" />
+          <s:enumeration value="ListarRendimento" />
+          <s:enumeration value="ListarDocumento" />
+          <s:enumeration value="AdicionarDocumento" />
+          <s:enumeration value="AlterarDocumento" />
+          <s:enumeration value="VisualizarContracheque" />
+          <s:enumeration value="VisualizarRendimento" />
+          <s:enumeration value="VisualizarProcesso" />
+          <s:enumeration value="ListarAvaliacaoPosJogo" />
+          <s:enumeration value="AdicionarAvaliacaoPosJogo" />
+          <s:enumeration value="AlterarAvaliacaoPosJogo" />
+          <s:enumeration value="ListarPainelDM" />
+          <s:enumeration value="AdicionarPainelDM" />
+          <s:enumeration value="AlterarPainelDM" />
+          <s:enumeration value="ListarCampeonato" />
+          <s:enumeration value="AdicionarCampeonato" />
+          <s:enumeration value="AlterarCampeonato" />
+          <s:enumeration value="ColetaCKAtleta" />
+          <s:enumeration value="ColetaCKCategoria" />
+          <s:enumeration value="RelatorioColetaCKAtleta" />
+          <s:enumeration value="RelatorioColetaCKCategoria" />
+          <s:enumeration value="ListarCarro" />
+          <s:enumeration value="AdicionarCarro" />
+          <s:enumeration value="AlterarCarro" />
+          <s:enumeration value="ListarMotorista" />
+          <s:enumeration value="AdicionarMotorista" />
+          <s:enumeration value="AlterarMotorista" />
+          <s:enumeration value="ListarAtletasPorCategoria" />
+          <s:enumeration value="CategoriaAtleta" />
+          <s:enumeration value="ListarSolicitacaoTransporte" />
+          <s:enumeration value="AdicionarSolicitacaoTransporte" />
+          <s:enumeration value="AlterarSolicitacaoTransporte" />
+          <s:enumeration value="PainelSolicitacaoTransporte" />
+          <s:enumeration value="AdicionarInformacoesUsuario" />
+          <s:enumeration value="RelatorioFichaCadastral" />
+          <s:enumeration value="ListarBanco" />
+          <s:enumeration value="AdicionarBanco" />
+          <s:enumeration value="AlterarBanco" />
+          <s:enumeration value="ListarEmprestimo" />
+          <s:enumeration value="AdicionarEmprestimo" />
+          <s:enumeration value="AlterarEmprestimo" />
+          <s:enumeration value="ListarRotina" />
+          <s:enumeration value="AdicionarRotina" />
+          <s:enumeration value="AlterarRotina" />
+          <s:enumeration value="ListarMedicamento" />
+          <s:enumeration value="AdicionarMedicamento" />
+          <s:enumeration value="AlterarMedicamento" />
+          <s:enumeration value="RelatorioEmprestimosAtleta" />
+          <s:enumeration value="ListarComunicado" />
+          <s:enumeration value="AdicionarComunicado" />
+          <s:enumeration value="AlterarComunicado" />
+          <s:enumeration value="ListarCircular" />
+          <s:enumeration value="AdicionarCircular" />
+          <s:enumeration value="AlterarCircular" />
+          <s:enumeration value="ListarEstante" />
+          <s:enumeration value="AdicionarEstante" />
+          <s:enumeration value="AlterarEstante" />
+          <s:enumeration value="ListarCaixa" />
+          <s:enumeration value="AdicionarCaixa" />
+          <s:enumeration value="AlterarCaixa" />
+          <s:enumeration value="ListarArquivo" />
+          <s:enumeration value="AdicionarArquivo" />
+          <s:enumeration value="AlterarArquivo" />
+          <s:enumeration value="ListarTipoDocumento" />
+          <s:enumeration value="AdicionarTipoDocumento" />
+          <s:enumeration value="AlterarTipoDocumento" />
+          <s:enumeration value="RemoverContracheque" />
+          <s:enumeration value="ListarConfirmacaoOcorrencia" />
+          <s:enumeration value="AdicionarConfirmacaoOcorrencia" />
+          <s:enumeration value="AlterarConfirmacaoOcorrencia" />
+          <s:enumeration value="RelatorioAniversariantesDoMes" />
+          <s:enumeration value="ListarConciliacaoTransporte" />
+          <s:enumeration value="AdicionarConciliacaoTransporte" />
+          <s:enumeration value="AlterarConciliacaoTransporte" />
+          <s:enumeration value="ManterConfigTransporte" />
+          <s:enumeration value="RegistrosNaoConciliados" />
+          <s:enumeration value="ListarOcorrencia" />
+          <s:enumeration value="ListarHistoricoImportacao" />
+          <s:enumeration value="ListarTipologia" />
+          <s:enumeration value="AdicionarTipologia" />
+          <s:enumeration value="AlterarTipologia" />
+          <s:enumeration value="ManterConfigTI" />
+          <s:enumeration value="ManterConfigFinanceiro" />
+          <s:enumeration value="ManterConfigOperacoes" />
+          <s:enumeration value="ListarAuditoria" />
+          <s:enumeration value="RelatorioAdmitidosDesligadosAno" />
+          <s:enumeration value="ListarCustoFolhaPagamento" />
+          <s:enumeration value="AdicionarCustoFolhaPagamento" />
+          <s:enumeration value="AlterarCustoFolhaPagamento" />
+          <s:enumeration value="RelatorioCustoFolhaPagamento" />
+          <s:enumeration value="ListarCustoAdmitidosEDesligados" />
+          <s:enumeration value="AdicionarCustoAdmitidosEDesligados" />
+          <s:enumeration value="AlterarCustoAdmitidosEDesligados" />
+          <s:enumeration value="RelatorioCustoAdmitidosEDesligados" />
+          <s:enumeration value="VisualizarConviteAniversariantesMes" />
+          <s:enumeration value="ListarHoraExtra" />
+          <s:enumeration value="AdicionarHoraExtra" />
+          <s:enumeration value="AlterarHoraExtra" />
+          <s:enumeration value="ListarAtestadoMedicoPeriodo" />
+          <s:enumeration value="AdicionarAtestadoMedicoPeriodo" />
+          <s:enumeration value="AlterarAtestadoMedicoPeriodo" />
+          <s:enumeration value="RelatorioHoraExtra" />
+          <s:enumeration value="RelatorioAtestadoMedicoPeriodo" />
+          <s:enumeration value="AdicionarRamal" />
+          <s:enumeration value="AlterarRamal" />
+          <s:enumeration value="ListarRamal" />
+          <s:enumeration value="AdicionarLocalRamal" />
+          <s:enumeration value="AlterarLocalRamal" />
+          <s:enumeration value="ListarLocalRamal" />
+          <s:enumeration value="RelatorioRamal" />
+          <s:enumeration value="ListarPrestadorDeServico" />
+          <s:enumeration value="AdicionarPrestadorDeServico" />
+          <s:enumeration value="AlterarPrestadorDeServico" />
+          <s:enumeration value="ListarLinha" />
+          <s:enumeration value="AdicionarLinha" />
+          <s:enumeration value="AlterarLinha" />
+          <s:enumeration value="ListarAparelho" />
+          <s:enumeration value="AdicionarAparelho" />
+          <s:enumeration value="AlterarAparelho" />
+          <s:enumeration value="RelatorioLinhaMoveis" />
+          <s:enumeration value="ListarDiaProfissional" />
+          <s:enumeration value="AdicionarDiaProfissional" />
+          <s:enumeration value="AlterarDiaProfissional" />
+          <s:enumeration value="RelatorioDiaProfissionalMes" />
+          <s:enumeration value="AdicionarQuadroMovelEnvioSetor" />
+          <s:enumeration value="AlterarQuadroMovelEnvioSetor" />
+          <s:enumeration value="ListarQuadroMovelEnvioSetor" />
+          <s:enumeration value="AdicionarFuncaoQuadroMovel" />
+          <s:enumeration value="AlterarFuncaoQuadroMovel" />
+          <s:enumeration value="ListarFuncaoQuadroMovel" />
+          <s:enumeration value="RelacaoAtestadoPeriodo" />
+          <s:enumeration value="ListarAlmoco" />
+          <s:enumeration value="AdicionarAlmoco" />
+          <s:enumeration value="AlterarAlmoco" />
+          <s:enumeration value="ManterConfigNutricao" />
+          <s:enumeration value="GerarAssinaturaEmail" />
+          <s:enumeration value="ListarColaboradorPrestadorJogo" />
+          <s:enumeration value="AlterarColaboradorPrestadorJogo" />
+          <s:enumeration value="ListarContratoCBF" />
+          <s:enumeration value="AlterarContratoCBF" />
+          <s:enumeration value="AdicionarContratoCBF" />
+          <s:enumeration value="PosicaoAtleta" />
+          <s:enumeration value="ListarSelecao" />
+          <s:enumeration value="AlterarSelecao" />
+          <s:enumeration value="AdicionarSelecao" />
+          <s:enumeration value="GerarCredencialQuadroMovel" />
+          <s:enumeration value="ListarNotebook" />
+          <s:enumeration value="AlterarNotebook" />
+          <s:enumeration value="AdicionarNotebook" />
+          <s:enumeration value="ListarModeloTermo" />
+          <s:enumeration value="AlterarModeloTermo" />
+          <s:enumeration value="AdicionarModeloTermo" />
+          <s:enumeration value="GerarTermo" />
+          <s:enumeration value="ListarControleMedicamento" />
+          <s:enumeration value="AlterarControleMedicamento" />
+          <s:enumeration value="AdicionarControleMedicamento" />
+          <s:enumeration value="RelatorioControleMedicamento" />
+          <s:enumeration value="RelatorioControleMedicamentoPizza" />
+          <s:enumeration value="ListarHospital" />
+          <s:enumeration value="AlterarHospital" />
+          <s:enumeration value="AdicionarHospital" />
+          <s:enumeration value="ListarExame" />
+          <s:enumeration value="AlterarExame" />
+          <s:enumeration value="AdicionarExame" />
+          <s:enumeration value="RelatorioExame" />
+          <s:enumeration value="RelatorioAmortizacao" />
+          <s:enumeration value="ListarLuvas" />
+          <s:enumeration value="AdicionarLuvas" />
+          <s:enumeration value="AlterarLuvas" />
+          <s:enumeration value="RelatorioDemandaTransporteDiaria" />
+          <s:enumeration value="RelatorioAtletaCategoria" />
+          <s:enumeration value="RelatorioAtletaContratoFormacao" />
+          <s:enumeration value="RelatorioAtletaContratoProfissional" />
+          <s:enumeration value="RelatorioCustoProcedimentoMedico" />
+          <s:enumeration value="ListarMedico" />
+          <s:enumeration value="AdicionarMedico" />
+          <s:enumeration value="AlterarMedico" />
+          <s:enumeration value="ListarEntradaDM" />
+          <s:enumeration value="AdicionarEntradaDM" />
+          <s:enumeration value="AlterarEntradaDM" />
+          <s:enumeration value="ListarTratamentoAtleta" />
+          <s:enumeration value="AdicionarTratamentoAtleta" />
+          <s:enumeration value="AlterarTratamentoAtleta" />
+          <s:enumeration value="ListarAtendimentoDM" />
+          <s:enumeration value="EstoqueMedicamento" />
+          <s:enumeration value="ListarMaterial" />
+          <s:enumeration value="AdicionarMaterial" />
+          <s:enumeration value="AlterarMaterial" />
+          <s:enumeration value="ListarEmprestimoMaterial" />
+          <s:enumeration value="AdicionarEmprestimoMaterial" />
+          <s:enumeration value="AlterarEmprestimoMaterial" />
+          <s:enumeration value="RelatorioEmprestimoMaterial" />
+          <s:enumeration value="RelatorioAvaliacaoPosJogo" />
+          <s:enumeration value="AdicionarDespesa" />
+          <s:enumeration value="AlterarDespesa" />
+          <s:enumeration value="ListarDespesa" />
+          <s:enumeration value="AdicionarDespesaFormacao" />
+          <s:enumeration value="AlterarDespesaFormacao" />
+          <s:enumeration value="ListarDespesaFormacao" />
+          <s:enumeration value="RelatorioFichaFinanceira" />
+          <s:enumeration value="ListarReceituario" />
+          <s:enumeration value="AdicionarReceituario" />
+          <s:enumeration value="ListarControleFinanceiroSocio" />
+          <s:enumeration value="AdicionarControleFinanceiroSocio" />
+          <s:enumeration value="AlterarControleFinanceiroSocio" />
+          <s:enumeration value="RelatorioControleFinanceiroSocio" />
+          <s:enumeration value="ManterConfigMarketing" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="Botao">
+        <s:restriction base="s:string">
+          <s:enumeration value="Nulo" />
+          <s:enumeration value="Voltar" />
+          <s:enumeration value="Alterar" />
+          <s:enumeration value="Pesquisar" />
+          <s:enumeration value="Remover" />
+          <s:enumeration value="Salvar" />
+          <s:enumeration value="InserirClube" />
+          <s:enumeration value="InserirProcurador" />
+          <s:enumeration value="CarregarAtletas" />
+          <s:enumeration value="CarregarAvaliacao" />
+          <s:enumeration value="InserirCategoria" />
+          <s:enumeration value="Buscar" />
+          <s:enumeration value="Anexo" />
+          <s:enumeration value="InserirClausulaExtra" />
+          <s:enumeration value="Imprimir" />
+          <s:enumeration value="InserirEmpresa" />
+          <s:enumeration value="RemoverClube" />
+          <s:enumeration value="Avancar" />
+          <s:enumeration value="RemoverFundamento" />
+          <s:enumeration value="InserirFundamento" />
+          <s:enumeration value="Dispensar" />
+          <s:enumeration value="DownloadDocumento" />
+          <s:enumeration value="InserirDadosBancarios" />
+          <s:enumeration value="InserirReserva" />
+          <s:enumeration value="InserirDataFixa" />
+          <s:enumeration value="RemoverDataFixa" />
+          <s:enumeration value="DownloadCircular" />
+          <s:enumeration value="PreVisualizar" />
+          <s:enumeration value="DownloadComunicado" />
+          <s:enumeration value="Confirmar" />
+          <s:enumeration value="Cancelar" />
+          <s:enumeration value="InserirSolicitacao" />
+          <s:enumeration value="InserirRotina" />
+          <s:enumeration value="Mesclar" />
+          <s:enumeration value="InserirUsuarios" />
+          <s:enumeration value="InserirColaboradorOuPrestador" />
+          <s:enumeration value="InserirAtestado" />
+          <s:enumeration value="InserirItemCardapio" />
+          <s:enumeration value="RemoverItemCardapio" />
+          <s:enumeration value="Video" />
+          <s:enumeration value="InserirConvocacao" />
+          <s:enumeration value="RemoverConvocacao" />
+          <s:enumeration value="InserirPagamentoAquisicao" />
+          <s:enumeration value="InserirDivisaoDireitoEconomico" />
+          <s:enumeration value="RemoverPagamentoAquisicao" />
+          <s:enumeration value="RemoverDivisaoDireitoEconomico" />
+          <s:enumeration value="RemoverDespesa" />
+          <s:enumeration value="InserirDespesa" />
+          <s:enumeration value="InserirExame" />
+          <s:enumeration value="RemoverExame" />
+          <s:enumeration value="AnexoExame" />
+          <s:enumeration value="InserirRegistro" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfPermissaoBotao">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PermissaoBotao" nillable="true" type="tns:PermissaoBotao" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PermissaoBotao">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" nillable="true" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="Botao" nillable="true" type="tns:Botao" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sistema" nillable="true" type="tns:Sistema" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tela" nillable="true" type="tns:Tela" />
+          <s:element minOccurs="1" maxOccurs="1" name="Habilitado" nillable="true" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Visivel" nillable="true" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Version" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="HasPermissionOnButtonResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HasPermissionOnButtonResult" type="tns:ArrayOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBoolean">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="boolean" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="HasPermissionOnField">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sistema" type="tns:Sistema" />
+            <s:element minOccurs="1" maxOccurs="1" name="tela" type="tns:Tela" />
+            <s:element minOccurs="1" maxOccurs="1" name="campo" type="tns:Campo" />
+            <s:element minOccurs="0" maxOccurs="1" name="permissoesCampo" type="tns:ArrayOfPermissaoCampo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="Campo">
+        <s:restriction base="s:string">
+          <s:enumeration value="Nulo" />
+          <s:enumeration value="PessoaDataNascimento" />
+          <s:enumeration value="PessoaRg" />
+          <s:enumeration value="PessoaOrgaoEmissor" />
+          <s:enumeration value="PessoaCpf" />
+          <s:enumeration value="PessoaTituloEleitor" />
+          <s:enumeration value="PessoaCtps" />
+          <s:enumeration value="PessoaSerieCtps" />
+          <s:enumeration value="PessoaUFCtps" />
+          <s:enumeration value="PessoaPassaporte" />
+          <s:enumeration value="PessoaEmail" />
+          <s:enumeration value="PessoaTelefone" />
+          <s:enumeration value="PessoaCelular" />
+          <s:enumeration value="PessoaSexo" />
+          <s:enumeration value="PessoaEstadoCivil" />
+          <s:enumeration value="PessoaValidadePassaporte" />
+          <s:enumeration value="PessoaReservista" />
+          <s:enumeration value="PessoaNaturalidadeEstado" />
+          <s:enumeration value="PessoaNaturalidade" />
+          <s:enumeration value="Apelido" />
+          <s:enumeration value="Posicao" />
+          <s:enumeration value="Categoria" />
+          <s:enumeration value="AlocadoAmador" />
+          <s:enumeration value="NumeroCbf" />
+          <s:enumeration value="RegistroFbf" />
+          <s:enumeration value="Numero" />
+          <s:enumeration value="Inativo" />
+          <s:enumeration value="DataEntrada" />
+          <s:enumeration value="DataSaida" />
+          <s:enumeration value="ContratoNaoProfissional" />
+          <s:enumeration value="DataInicio" />
+          <s:enumeration value="DataFim" />
+          <s:enumeration value="ResideNoClube" />
+          <s:enumeration value="Indicador" />
+          <s:enumeration value="PessoaDadosBancarios" />
+          <s:enumeration value="PessoaDadosBancariosBanco" />
+          <s:enumeration value="PessoaDadosBancariosTipoConta" />
+          <s:enumeration value="PessoaDadosBancariosContaDigito" />
+          <s:enumeration value="AtletaClubeClube" />
+          <s:enumeration value="Procuradores" />
+          <s:enumeration value="ProcuradorPessoaNome" />
+          <s:enumeration value="MaePessoaNome" />
+          <s:enumeration value="MaePessoaEmail" />
+          <s:enumeration value="MaePessoaCpf" />
+          <s:enumeration value="MaePessoaTelefone" />
+          <s:enumeration value="MaePessoaCelular" />
+          <s:enumeration value="PaiPessoaNome" />
+          <s:enumeration value="PaiPessoaEmail" />
+          <s:enumeration value="PaiPessoaCpf" />
+          <s:enumeration value="PaiPessoaTelefone" />
+          <s:enumeration value="PaiPessoaCelular" />
+          <s:enumeration value="PessoaEnderecoDescricao" />
+          <s:enumeration value="PessoaEnderecoComplemento" />
+          <s:enumeration value="PessoaEnderecoNumero" />
+          <s:enumeration value="PessoaEnderecoCep" />
+          <s:enumeration value="PessoaEnderecoEstado" />
+          <s:enumeration value="PessoaEnderecoCidade" />
+          <s:enumeration value="TipoCartao" />
+          <s:enumeration value="Instante" />
+          <s:enumeration value="AdversarioNome" />
+          <s:enumeration value="Nome" />
+          <s:enumeration value="TipoCategoria" />
+          <s:enumeration value="CategoriaIdade" />
+          <s:enumeration value="CidadeEstado" />
+          <s:enumeration value="NomeCompleto" />
+          <s:enumeration value="Contato" />
+          <s:enumeration value="Usuario" />
+          <s:enumeration value="Telefone" />
+          <s:enumeration value="CompeticaoTipoCompeticao" />
+          <s:enumeration value="CompeticaoNCartoes" />
+          <s:enumeration value="DataAvaliacao" />
+          <s:enumeration value="Peso" />
+          <s:enumeration value="Altura" />
+          <s:enumeration value="Triceps" />
+          <s:enumeration value="SUB" />
+          <s:enumeration value="Iliaca" />
+          <s:enumeration value="Abdomen" />
+          <s:enumeration value="PessoaTipoPessoa" />
+          <s:enumeration value="ContratoProfissionalContratoAtletaNumero" />
+          <s:enumeration value="ContratoAtletaValor" />
+          <s:enumeration value="ClausulaTexto" />
+          <s:enumeration value="ClausulaTipoClausulaExtra" />
+          <s:enumeration value="ClausulaAlcancada" />
+          <s:enumeration value="ContratoAtletaRescindido" />
+          <s:enumeration value="Conteudo" />
+          <s:enumeration value="ContratoAtletaNumero" />
+          <s:enumeration value="ValorTransferenciaNacional" />
+          <s:enumeration value="TipoTransferenciaNacional" />
+          <s:enumeration value="ValorTransferenciaInternacional" />
+          <s:enumeration value="TipoTransferenciaInternacional" />
+          <s:enumeration value="ValorAjudaMoradia" />
+          <s:enumeration value="PessoaCnpj" />
+          <s:enumeration value="Fantasia" />
+          <s:enumeration value="PessoaObservacao" />
+          <s:enumeration value="FundamentoNome" />
+          <s:enumeration value="FundamentoInativo" />
+          <s:enumeration value="Competicao" />
+          <s:enumeration value="ClubeAdversario" />
+          <s:enumeration value="GolMarcado" />
+          <s:enumeration value="GolSofrido" />
+          <s:enumeration value="Participou" />
+          <s:enumeration value="AvaliacaoTipoAvaliacao" />
+          <s:enumeration value="DataJogo" />
+          <s:enumeration value="Temporada" />
+          <s:enumeration value="Variaveis" />
+          <s:enumeration value="Funcoes" />
+          <s:enumeration value="TipoParametroModeloContratoFormacao" />
+          <s:enumeration value="TipoParametroModeloContratoParceria" />
+          <s:enumeration value="TipoParametroModeloContratoDireitoDeImagem" />
+          <s:enumeration value="TipoParametroModeloTermoAjuste" />
+          <s:enumeration value="TipoParametroModeloContratoIntermediacao" />
+          <s:enumeration value="TipoParametroTemporadaAtual" />
+          <s:enumeration value="TipoSuspensao" />
+          <s:enumeration value="NJogos" />
+          <s:enumeration value="DataAplicacao" />
+          <s:enumeration value="Data" />
+          <s:enumeration value="Notas" />
+          <s:enumeration value="Titulo" />
+          <s:enumeration value="PlanoJogo" />
+          <s:enumeration value="AtletaClubeDataInicio" />
+          <s:enumeration value="AtletaClubeDataFim" />
+          <s:enumeration value="PessoaDadosBancariosAgencia" />
+          <s:enumeration value="PessoaDadosBancariosAgenciaDigito" />
+          <s:enumeration value="PessoaDadosBancariosConta" />
+          <s:enumeration value="DataAdmissao" />
+          <s:enumeration value="PessoaNome" />
+          <s:enumeration value="Atleta" />
+          <s:enumeration value="AnoInicio" />
+          <s:enumeration value="AnoFim" />
+          <s:enumeration value="Jogo" />
+          <s:enumeration value="Empresa" />
+          <s:enumeration value="Representante" />
+          <s:enumeration value="TipoChamado" />
+          <s:enumeration value="Prioridade" />
+          <s:enumeration value="Responsavel" />
+          <s:enumeration value="Descricao" />
+          <s:enumeration value="Administrador" />
+          <s:enumeration value="Lider" />
+          <s:enumeration value="StatusChamado" />
+          <s:enumeration value="Texto" />
+          <s:enumeration value="Ocorrencia" />
+          <s:enumeration value="TipoPainelDM" />
+          <s:enumeration value="Imagem" />
+          <s:enumeration value="DataColetaCK" />
+          <s:enumeration value="ValorCK" />
+          <s:enumeration value="Dispensado" />
+          <s:enumeration value="Principal" />
+          <s:enumeration value="Divisao" />
+          <s:enumeration value="AnoInicial" />
+          <s:enumeration value="AnoFinal" />
+          <s:enumeration value="Finalizado" />
+          <s:enumeration value="CompeticaoNome" />
+          <s:enumeration value="Pais" />
+          <s:enumeration value="Continente" />
+          <s:enumeration value="TipoTime" />
+          <s:enumeration value="TipoCompeticao" />
+          <s:enumeration value="CompeticaoInternacional" />
+          <s:enumeration value="Colaborador" />
+          <s:enumeration value="Funcao" />
+          <s:enumeration value="Matricula" />
+          <s:enumeration value="SetorColaborador" />
+          <s:enumeration value="EmailOrigem" />
+          <s:enumeration value="Senha" />
+          <s:enumeration value="EmailDestino" />
+          <s:enumeration value="EmailGestor" />
+          <s:enumeration value="HorarioEnvioEmail" />
+          <s:enumeration value="NomeEmpresa" />
+          <s:enumeration value="EnviarEmail" />
+          <s:enumeration value="PrimeiraParcela" />
+          <s:enumeration value="SegundaParcela" />
+          <s:enumeration value="Destinado" />
+          <s:enumeration value="Arquivo" />
+          <s:enumeration value="Geral" />
+          <s:enumeration value="Vara" />
+          <s:enumeration value="Risco" />
+          <s:enumeration value="Autor" />
+          <s:enumeration value="Reu" />
+          <s:enumeration value="Area" />
+          <s:enumeration value="ValorInicial" />
+          <s:enumeration value="DataDistribuicao" />
+          <s:enumeration value="AdvogadosAutor" />
+          <s:enumeration value="AdvogadosReu" />
+          <s:enumeration value="Acao" />
+          <s:enumeration value="AssinaturaDigital" />
+          <s:enumeration value="TipoParametroTempoExibicao" />
+          <s:enumeration value="Placa" />
+          <s:enumeration value="Modelo" />
+          <s:enumeration value="TipoCarro" />
+          <s:enumeration value="PessoaIdade" />
+          <s:enumeration value="TipoParametroSetorTransporte" />
+          <s:enumeration value="AnoNascimento" />
+          <s:enumeration value="Motorista" />
+          <s:enumeration value="DataRetorno" />
+          <s:enumeration value="Confirmado" />
+          <s:enumeration value="Carro" />
+          <s:enumeration value="StatusSolicitacao" />
+          <s:enumeration value="Codigo" />
+          <s:enumeration value="HoraInicio" />
+          <s:enumeration value="HoraFim" />
+          <s:enumeration value="Domingo" />
+          <s:enumeration value="Segunda" />
+          <s:enumeration value="Terca" />
+          <s:enumeration value="Quarta" />
+          <s:enumeration value="Quinta" />
+          <s:enumeration value="Sexta" />
+          <s:enumeration value="Sabado" />
+          <s:enumeration value="Feriado" />
+          <s:enumeration value="DataHoraInicio" />
+          <s:enumeration value="DataHoraFim" />
+          <s:enumeration value="TipoParametroSetorRH" />
+          <s:enumeration value="ClubeDestino" />
+          <s:enumeration value="Encerrado" />
+          <s:enumeration value="Quantidade" />
+          <s:enumeration value="QuantidadeMinima" />
+          <s:enumeration value="Relacao" />
+          <s:enumeration value="UnidadeSaida" />
+          <s:enumeration value="UnidadeEntrada" />
+          <s:enumeration value="VizualiaAtletaSemCategoria" />
+          <s:enumeration value="DataLimite" />
+          <s:enumeration value="Assunto" />
+          <s:enumeration value="TipoComunicado" />
+          <s:enumeration value="Circular" />
+          <s:enumeration value="Caixa" />
+          <s:enumeration value="Estante" />
+          <s:enumeration value="StatusDocumento" />
+          <s:enumeration value="TipoPessoa" />
+          <s:enumeration value="Setor" />
+          <s:enumeration value="TipoDocumento" />
+          <s:enumeration value="TipoParametroSetorDocumentacao" />
+          <s:enumeration value="FormatoComunicado" />
+          <s:enumeration value="TipoParametroSetorTI" />
+          <s:enumeration value="Observacao" />
+          <s:enumeration value="Rotina" />
+          <s:enumeration value="RemoverAnexos" />
+          <s:enumeration value="PrazoSolicitacao" />
+          <s:enumeration value="TipoParametroSetorMarketing" />
+          <s:enumeration value="TipoParametroSetorPresidencia" />
+          <s:enumeration value="TipoParametroSetorJuridico" />
+          <s:enumeration value="TipoParametroSetorFinanceiro" />
+          <s:enumeration value="TipoParametroSetorFutebolProfissional" />
+          <s:enumeration value="TipoParametroSetorFutebolAmador" />
+          <s:enumeration value="Selecionado" />
+          <s:enumeration value="Solitacoes" />
+          <s:enumeration value="Rotinas" />
+          <s:enumeration value="TipoParametroSetorDepartamentoMedico" />
+          <s:enumeration value="Tipologia" />
+          <s:enumeration value="Ano" />
+          <s:enumeration value="Temporalidade" />
+          <s:enumeration value="Descarte" />
+          <s:enumeration value="TipoParametroSetorOperacoes" />
+          <s:enumeration value="ExibirPaginaInicial" />
+          <s:enumeration value="DataDemissao" />
+          <s:enumeration value="Janeiro" />
+          <s:enumeration value="Fevereiro" />
+          <s:enumeration value="Marco" />
+          <s:enumeration value="Abril" />
+          <s:enumeration value="Maio" />
+          <s:enumeration value="Junho" />
+          <s:enumeration value="Julho" />
+          <s:enumeration value="Agosto" />
+          <s:enumeration value="Setembro" />
+          <s:enumeration value="Outubro" />
+          <s:enumeration value="Novembro" />
+          <s:enumeration value="Dezembro" />
+          <s:enumeration value="JaneiroOperacional" />
+          <s:enumeration value="FevereiroOperacional" />
+          <s:enumeration value="MarcoOperacional" />
+          <s:enumeration value="AbrilOperacional" />
+          <s:enumeration value="MaioOperacional" />
+          <s:enumeration value="JunhoOperacional" />
+          <s:enumeration value="JulhoOperacional" />
+          <s:enumeration value="AgostoOperacional" />
+          <s:enumeration value="SetembroOperacional" />
+          <s:enumeration value="OutubroOperacional" />
+          <s:enumeration value="NovembroOperacional" />
+          <s:enumeration value="DezembroOperacional" />
+          <s:enumeration value="JaneiroAtleta" />
+          <s:enumeration value="FevereiroAtleta" />
+          <s:enumeration value="MarcoAtleta" />
+          <s:enumeration value="AbrilAtleta" />
+          <s:enumeration value="MaioAtleta" />
+          <s:enumeration value="JunhoAtleta" />
+          <s:enumeration value="JulhoAtleta" />
+          <s:enumeration value="AgostoAtleta" />
+          <s:enumeration value="SetembroAtleta" />
+          <s:enumeration value="OutubroAtleta" />
+          <s:enumeration value="NovembroAtleta" />
+          <s:enumeration value="DezembroAtleta" />
+          <s:enumeration value="LayoutConviteAniversariantesMes" />
+          <s:enumeration value="ValorJaneiro" />
+          <s:enumeration value="ValorFevereiro" />
+          <s:enumeration value="ValorMarco" />
+          <s:enumeration value="ValorAbril" />
+          <s:enumeration value="ValorMaio" />
+          <s:enumeration value="ValorJunho" />
+          <s:enumeration value="ValorJulho" />
+          <s:enumeration value="ValorAgosto" />
+          <s:enumeration value="ValorSetembro" />
+          <s:enumeration value="ValorOutubro" />
+          <s:enumeration value="ValorNovembro" />
+          <s:enumeration value="ValorDezembro" />
+          <s:enumeration value="HorasGeradasJaneiro" />
+          <s:enumeration value="HorasGeradasFevereiro" />
+          <s:enumeration value="HorasGeradasMarco" />
+          <s:enumeration value="HorasGeradasAbril" />
+          <s:enumeration value="HorasGeradasMaio" />
+          <s:enumeration value="HorasGeradasJunho" />
+          <s:enumeration value="HorasGeradasJulho" />
+          <s:enumeration value="HorasGeradasAgosto" />
+          <s:enumeration value="HorasGeradasSetembro" />
+          <s:enumeration value="HorasGeradasOutubro" />
+          <s:enumeration value="HorasGeradasNovembro" />
+          <s:enumeration value="HorasGeradasDezembro" />
+          <s:enumeration value="Local" />
+          <s:enumeration value="Ramal" />
+          <s:enumeration value="NomeRamalLocal" />
+          <s:enumeration value="Imei" />
+          <s:enumeration value="Voz" />
+          <s:enumeration value="Dados" />
+          <s:enumeration value="Profissao" />
+          <s:enumeration value="PessoaPis" />
+          <s:enumeration value="PessoaCelularAlternativo" />
+          <s:enumeration value="PessoaEnderecoBairro" />
+          <s:enumeration value="PessoaSecao" />
+          <s:enumeration value="PessoaZona" />
+          <s:enumeration value="FuncaoQuadroMovel" />
+          <s:enumeration value="Liquido" />
+          <s:enumeration value="TipoParametroClubeCasa" />
+          <s:enumeration value="ClubeCasa" />
+          <s:enumeration value="ClubeVisitante" />
+          <s:enumeration value="TipoAlimento" />
+          <s:enumeration value="LayoutAssinaturaEmail" />
+          <s:enumeration value="DataHoraEntrada" />
+          <s:enumeration value="DataHoraSaida" />
+          <s:enumeration value="AtletaConvocacaoSelecao" />
+          <s:enumeration value="AtletaConvocacaoCategoria" />
+          <s:enumeration value="AtletaConvocacaoDataInicio" />
+          <s:enumeration value="AtletaConvocacaoDataFim" />
+          <s:enumeration value="LayoutCredencialQuadroMovel" />
+          <s:enumeration value="RazaoSocial" />
+          <s:enumeration value="Cnpj" />
+          <s:enumeration value="Marca" />
+          <s:enumeration value="Processador" />
+          <s:enumeration value="Tela" />
+          <s:enumeration value="NumeroSerie" />
+          <s:enumeration value="NumeroPatrimonio" />
+          <s:enumeration value="Valor" />
+          <s:enumeration value="ServiceTag" />
+          <s:enumeration value="Imei2" />
+          <s:enumeration value="TipoParametroModeloTermoResponsabilidadeNotebook" />
+          <s:enumeration value="TipoParametroModeloTermoResponsabilidadeAparelho" />
+          <s:enumeration value="TipoParametroModeloTermoDevolucaoAparelho" />
+          <s:enumeration value="DataEntrega" />
+          <s:enumeration value="DataDevolucao" />
+          <s:enumeration value="Aparelho" />
+          <s:enumeration value="Notebook" />
+          <s:enumeration value="Entrada" />
+          <s:enumeration value="DataValidade" />
+          <s:enumeration value="TipoSaida" />
+          <s:enumeration value="Lote" />
+          <s:enumeration value="Medicamento" />
+          <s:enumeration value="AuxilioTransporte" />
+          <s:enumeration value="Hospital" />
+          <s:enumeration value="ContratoAtletaSalario" />
+          <s:enumeration value="Luvas" />
+          <s:enumeration value="Moeda" />
+          <s:enumeration value="Parcelas" />
+          <s:enumeration value="ContratoAtletaDataRecisao" />
+          <s:enumeration value="TipoProcedimentoMedico" />
+          <s:enumeration value="Crm" />
+          <s:enumeration value="Especialidade" />
+          <s:enumeration value="DataHora" />
+          <s:enumeration value="DataTermino" />
+          <s:enumeration value="Evolucao" />
+          <s:enumeration value="DataHoraEvolucao" />
+          <s:enumeration value="Cid" />
+          <s:enumeration value="Medico" />
+          <s:enumeration value="Emprestimo" />
+          <s:enumeration value="Entregue" />
+          <s:enumeration value="Material" />
+          <s:enumeration value="PagamentoAquisicaoPorcentagem" />
+          <s:enumeration value="PagamentoAquisicaoValor" />
+          <s:enumeration value="PagamentoAquisicaoEmpresa" />
+          <s:enumeration value="PagamentoAquisicaoDataContrato" />
+          <s:enumeration value="DivisaoDireitoEconomicoPorcentagem" />
+          <s:enumeration value="DivisaoDireitoEconomicoEmpresa" />
+          <s:enumeration value="DivisaoDireitoEconomicoOpcaoDeCompra" />
+          <s:enumeration value="ContratoAtletaObservacao" />
+          <s:enumeration value="ContratoAtletaPorcentagem" />
+          <s:enumeration value="ContratoIntermediacaoEmpresaPorcentagem" />
+          <s:enumeration value="ReceituarioTitulo" />
+          <s:enumeration value="ReceituarioDataHora" />
+          <s:enumeration value="ReceituarioDescricao" />
+          <s:enumeration value="Exame" />
+          <s:enumeration value="Socio" />
+          <s:enumeration value="TipoAcao" />
+          <s:enumeration value="TipoPlano" />
+          <s:enumeration value="Dependente" />
+          <s:enumeration value="MetodoPagamento" />
+          <s:enumeration value="Despesa" />
+          <s:enumeration value="TaxaAdesao" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfPermissaoCampo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PermissaoCampo" nillable="true" type="tns:PermissaoCampo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PermissaoCampo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" nillable="true" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="Campo" nillable="true" type="tns:Campo" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sistema" nillable="true" type="tns:Sistema" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tela" nillable="true" type="tns:Tela" />
+          <s:element minOccurs="1" maxOccurs="1" name="Habilitado" nillable="true" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Visivel" nillable="true" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Version" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="HasPermissionOnFieldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HasPermissionOnFieldResult" type="tns:ArrayOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HasPermissionOnView">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sistema" type="tns:Sistema" />
+            <s:element minOccurs="1" maxOccurs="1" name="tela" type="tns:Tela" />
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HasPermissionOnViewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="HasPermissionOnViewResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListPermissaoTelaByUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="tns:Usuario" />
+            <s:element minOccurs="0" maxOccurs="1" name="sistema" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListPermissaoTelaByUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListPermissaoTelaByUsuarioResult" type="tns:PermissoesDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PermissoesDTO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="permissoesCampo" type="tns:ArrayOfPermissaoCampo" />
+          <s:element minOccurs="0" maxOccurs="1" name="permissoesBotao" type="tns:ArrayOfPermissaoBotao" />
+          <s:element minOccurs="0" maxOccurs="1" name="permissoesTela" type="tns:ArrayOfPermissaoTela" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPermissaoTela">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PermissaoTela" nillable="true" type="tns:PermissaoTela" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PermissaoTela">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" nillable="true" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tela" nillable="true" type="tns:Tela" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sistema" nillable="true" type="tns:Sistema" />
+          <s:element minOccurs="1" maxOccurs="1" name="Habilitado" nillable="true" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Version" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="HasPermissionOnApp">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sistema" type="tns:Sistema" />
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HasPermissionOnAppResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="HasPermissionOnAppResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListPermissaoCampoByUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="tns:Usuario" />
+            <s:element minOccurs="0" maxOccurs="1" name="views" type="tns:ArrayOfPermissaoTela" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListPermissaoCampoByUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListPermissaoCampoByUsuarioResult" type="tns:ArrayOfPermissaoCampo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListPermissaoBotaoByUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="tns:Usuario" />
+            <s:element minOccurs="0" maxOccurs="1" name="views" type="tns:ArrayOfPermissaoTela" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListPermissaoBotaoByUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListPermissaoBotaoByUsuarioResult" type="tns:ArrayOfPermissaoBotao" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetListSetorByUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListSetorByUsuario" />
+  </wsdl:message>
+  <wsdl:message name="GetListSetorByUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListSetorByUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListUsuariosBySetorSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListUsuariosBySetor" />
+  </wsdl:message>
+  <wsdl:message name="GetListUsuariosBySetorSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListUsuariosBySetorResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListUsuariosAtivosBySetorSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListUsuariosAtivosBySetor" />
+  </wsdl:message>
+  <wsdl:message name="GetListUsuariosAtivosBySetorSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListUsuariosAtivosBySetorResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDropDownListSetorSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDropDownListSetor" />
+  </wsdl:message>
+  <wsdl:message name="GetDropDownListSetorSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDropDownListSetorResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDropDownListUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDropDownListUsuario" />
+  </wsdl:message>
+  <wsdl:message name="GetDropDownListUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDropDownListUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDropDownListUsuarioAtivoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDropDownListUsuarioAtivo" />
+  </wsdl:message>
+  <wsdl:message name="GetDropDownListUsuarioAtivoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDropDownListUsuarioAtivoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListUsuarioAtivoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListUsuarioAtivo" />
+  </wsdl:message>
+  <wsdl:message name="GetListUsuarioAtivoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListUsuarioAtivoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListUsuario" />
+  </wsdl:message>
+  <wsdl:message name="GetListUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListUsuarioByExemploSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListUsuarioByExemplo" />
+  </wsdl:message>
+  <wsdl:message name="GetListUsuarioByExemploSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListUsuarioByExemploResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSetorByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSetorById" />
+  </wsdl:message>
+  <wsdl:message name="GetSetorByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSetorByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsuarioByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsuarioById" />
+  </wsdl:message>
+  <wsdl:message name="GetUsuarioByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsuarioByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFirstUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFirstUsuario" />
+  </wsdl:message>
+  <wsdl:message name="GetFirstUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFirstUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFirstUsuarioAdmSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFirstUsuarioAdm" />
+  </wsdl:message>
+  <wsdl:message name="GetFirstUsuarioAdmSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFirstUsuarioAdmResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsuarioByExemploSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsuarioByExemplo" />
+  </wsdl:message>
+  <wsdl:message name="GetUsuarioByExemploSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsuarioByExemploResponse" />
+  </wsdl:message>
+  <wsdl:message name="SalvarUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:SalvarUsuario" />
+  </wsdl:message>
+  <wsdl:message name="SalvarUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:SalvarUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapIn">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsuario" />
+  </wsdl:message>
+  <wsdl:message name="GetUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="HasPermissionOnButtonSoapIn">
+    <wsdl:part name="parameters" element="tns:HasPermissionOnButton" />
+  </wsdl:message>
+  <wsdl:message name="HasPermissionOnButtonSoapOut">
+    <wsdl:part name="parameters" element="tns:HasPermissionOnButtonResponse" />
+  </wsdl:message>
+  <wsdl:message name="HasPermissionOnFieldSoapIn">
+    <wsdl:part name="parameters" element="tns:HasPermissionOnField" />
+  </wsdl:message>
+  <wsdl:message name="HasPermissionOnFieldSoapOut">
+    <wsdl:part name="parameters" element="tns:HasPermissionOnFieldResponse" />
+  </wsdl:message>
+  <wsdl:message name="HasPermissionOnViewSoapIn">
+    <wsdl:part name="parameters" element="tns:HasPermissionOnView" />
+  </wsdl:message>
+  <wsdl:message name="HasPermissionOnViewSoapOut">
+    <wsdl:part name="parameters" element="tns:HasPermissionOnViewResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListPermissaoTelaByUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListPermissaoTelaByUsuario" />
+  </wsdl:message>
+  <wsdl:message name="GetListPermissaoTelaByUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListPermissaoTelaByUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="HasPermissionOnAppSoapIn">
+    <wsdl:part name="parameters" element="tns:HasPermissionOnApp" />
+  </wsdl:message>
+  <wsdl:message name="HasPermissionOnAppSoapOut">
+    <wsdl:part name="parameters" element="tns:HasPermissionOnAppResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListPermissaoCampoByUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListPermissaoCampoByUsuario" />
+  </wsdl:message>
+  <wsdl:message name="GetListPermissaoCampoByUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListPermissaoCampoByUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListPermissaoBotaoByUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListPermissaoBotaoByUsuario" />
+  </wsdl:message>
+  <wsdl:message name="GetListPermissaoBotaoByUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListPermissaoBotaoByUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:portType name="AcessoWebServiceSoap">
+    <wsdl:operation name="GetListSetorByUsuario">
+      <wsdl:input message="tns:GetListSetorByUsuarioSoapIn" />
+      <wsdl:output message="tns:GetListSetorByUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListUsuariosBySetor">
+      <wsdl:input message="tns:GetListUsuariosBySetorSoapIn" />
+      <wsdl:output message="tns:GetListUsuariosBySetorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListUsuariosAtivosBySetor">
+      <wsdl:input message="tns:GetListUsuariosAtivosBySetorSoapIn" />
+      <wsdl:output message="tns:GetListUsuariosAtivosBySetorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDropDownListSetor">
+      <wsdl:input message="tns:GetDropDownListSetorSoapIn" />
+      <wsdl:output message="tns:GetDropDownListSetorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDropDownListUsuario">
+      <wsdl:input message="tns:GetDropDownListUsuarioSoapIn" />
+      <wsdl:output message="tns:GetDropDownListUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDropDownListUsuarioAtivo">
+      <wsdl:input message="tns:GetDropDownListUsuarioAtivoSoapIn" />
+      <wsdl:output message="tns:GetDropDownListUsuarioAtivoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListUsuarioAtivo">
+      <wsdl:input message="tns:GetListUsuarioAtivoSoapIn" />
+      <wsdl:output message="tns:GetListUsuarioAtivoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListUsuario">
+      <wsdl:input message="tns:GetListUsuarioSoapIn" />
+      <wsdl:output message="tns:GetListUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListUsuarioByExemplo">
+      <wsdl:input message="tns:GetListUsuarioByExemploSoapIn" />
+      <wsdl:output message="tns:GetListUsuarioByExemploSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSetorById">
+      <wsdl:input message="tns:GetSetorByIdSoapIn" />
+      <wsdl:output message="tns:GetSetorByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsuarioById">
+      <wsdl:input message="tns:GetUsuarioByIdSoapIn" />
+      <wsdl:output message="tns:GetUsuarioByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFirstUsuario">
+      <wsdl:input message="tns:GetFirstUsuarioSoapIn" />
+      <wsdl:output message="tns:GetFirstUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFirstUsuarioAdm">
+      <wsdl:input message="tns:GetFirstUsuarioAdmSoapIn" />
+      <wsdl:output message="tns:GetFirstUsuarioAdmSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsuarioByExemplo">
+      <wsdl:input message="tns:GetUsuarioByExemploSoapIn" />
+      <wsdl:output message="tns:GetUsuarioByExemploSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SalvarUsuario">
+      <wsdl:input message="tns:SalvarUsuarioSoapIn" />
+      <wsdl:output message="tns:SalvarUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginSoapIn" />
+      <wsdl:output message="tns:LoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsuario">
+      <wsdl:input message="tns:GetUsuarioSoapIn" />
+      <wsdl:output message="tns:GetUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HasPermissionOnButton">
+      <wsdl:input message="tns:HasPermissionOnButtonSoapIn" />
+      <wsdl:output message="tns:HasPermissionOnButtonSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HasPermissionOnField">
+      <wsdl:input message="tns:HasPermissionOnFieldSoapIn" />
+      <wsdl:output message="tns:HasPermissionOnFieldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HasPermissionOnView">
+      <wsdl:input message="tns:HasPermissionOnViewSoapIn" />
+      <wsdl:output message="tns:HasPermissionOnViewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListPermissaoTelaByUsuario">
+      <wsdl:input message="tns:GetListPermissaoTelaByUsuarioSoapIn" />
+      <wsdl:output message="tns:GetListPermissaoTelaByUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HasPermissionOnApp">
+      <wsdl:input message="tns:HasPermissionOnAppSoapIn" />
+      <wsdl:output message="tns:HasPermissionOnAppSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListPermissaoCampoByUsuario">
+      <wsdl:input message="tns:GetListPermissaoCampoByUsuarioSoapIn" />
+      <wsdl:output message="tns:GetListPermissaoCampoByUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListPermissaoBotaoByUsuario">
+      <wsdl:input message="tns:GetListPermissaoBotaoByUsuarioSoapIn" />
+      <wsdl:output message="tns:GetListPermissaoBotaoByUsuarioSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AcessoWebServiceSoap" type="tns:AcessoWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetListSetorByUsuario">
+      <soap:operation soapAction="Acesso/GetListSetorByUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListUsuariosBySetor">
+      <soap:operation soapAction="Acesso/GetListUsuariosBySetor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListUsuariosAtivosBySetor">
+      <soap:operation soapAction="Acesso/GetListUsuariosAtivosBySetor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDropDownListSetor">
+      <soap:operation soapAction="Acesso/GetDropDownListSetor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDropDownListUsuario">
+      <soap:operation soapAction="Acesso/GetDropDownListUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDropDownListUsuarioAtivo">
+      <soap:operation soapAction="Acesso/GetDropDownListUsuarioAtivo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListUsuarioAtivo">
+      <soap:operation soapAction="Acesso/GetListUsuarioAtivo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListUsuario">
+      <soap:operation soapAction="Acesso/GetListUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListUsuarioByExemplo">
+      <soap:operation soapAction="Acesso/GetListUsuarioByExemplo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSetorById">
+      <soap:operation soapAction="Acesso/GetSetorById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsuarioById">
+      <soap:operation soapAction="Acesso/GetUsuarioById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFirstUsuario">
+      <soap:operation soapAction="Acesso/GetFirstUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFirstUsuarioAdm">
+      <soap:operation soapAction="Acesso/GetFirstUsuarioAdm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsuarioByExemplo">
+      <soap:operation soapAction="Acesso/GetUsuarioByExemplo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SalvarUsuario">
+      <soap:operation soapAction="Acesso/SalvarUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="Acesso/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsuario">
+      <soap:operation soapAction="Acesso/GetUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HasPermissionOnButton">
+      <soap:operation soapAction="Acesso/HasPermissionOnButton" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HasPermissionOnField">
+      <soap:operation soapAction="Acesso/HasPermissionOnField" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HasPermissionOnView">
+      <soap:operation soapAction="Acesso/HasPermissionOnView" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListPermissaoTelaByUsuario">
+      <soap:operation soapAction="Acesso/GetListPermissaoTelaByUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HasPermissionOnApp">
+      <soap:operation soapAction="Acesso/HasPermissionOnApp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListPermissaoCampoByUsuario">
+      <soap:operation soapAction="Acesso/GetListPermissaoCampoByUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListPermissaoBotaoByUsuario">
+      <soap:operation soapAction="Acesso/GetListPermissaoBotaoByUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AcessoWebServiceSoap12" type="tns:AcessoWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetListSetorByUsuario">
+      <soap12:operation soapAction="Acesso/GetListSetorByUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListUsuariosBySetor">
+      <soap12:operation soapAction="Acesso/GetListUsuariosBySetor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListUsuariosAtivosBySetor">
+      <soap12:operation soapAction="Acesso/GetListUsuariosAtivosBySetor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDropDownListSetor">
+      <soap12:operation soapAction="Acesso/GetDropDownListSetor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDropDownListUsuario">
+      <soap12:operation soapAction="Acesso/GetDropDownListUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDropDownListUsuarioAtivo">
+      <soap12:operation soapAction="Acesso/GetDropDownListUsuarioAtivo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListUsuarioAtivo">
+      <soap12:operation soapAction="Acesso/GetListUsuarioAtivo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListUsuario">
+      <soap12:operation soapAction="Acesso/GetListUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListUsuarioByExemplo">
+      <soap12:operation soapAction="Acesso/GetListUsuarioByExemplo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSetorById">
+      <soap12:operation soapAction="Acesso/GetSetorById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsuarioById">
+      <soap12:operation soapAction="Acesso/GetUsuarioById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFirstUsuario">
+      <soap12:operation soapAction="Acesso/GetFirstUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFirstUsuarioAdm">
+      <soap12:operation soapAction="Acesso/GetFirstUsuarioAdm" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsuarioByExemplo">
+      <soap12:operation soapAction="Acesso/GetUsuarioByExemplo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SalvarUsuario">
+      <soap12:operation soapAction="Acesso/SalvarUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="Acesso/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsuario">
+      <soap12:operation soapAction="Acesso/GetUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HasPermissionOnButton">
+      <soap12:operation soapAction="Acesso/HasPermissionOnButton" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HasPermissionOnField">
+      <soap12:operation soapAction="Acesso/HasPermissionOnField" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HasPermissionOnView">
+      <soap12:operation soapAction="Acesso/HasPermissionOnView" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListPermissaoTelaByUsuario">
+      <soap12:operation soapAction="Acesso/GetListPermissaoTelaByUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HasPermissionOnApp">
+      <soap12:operation soapAction="Acesso/HasPermissionOnApp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListPermissaoCampoByUsuario">
+      <soap12:operation soapAction="Acesso/GetListPermissaoCampoByUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListPermissaoBotaoByUsuario">
+      <soap12:operation soapAction="Acesso/GetListPermissaoBotaoByUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AcessoWebService">
+    <wsdl:port name="AcessoWebServiceSoap" binding="tns:AcessoWebServiceSoap">
+      <soap:address location="http://localhost:56741/AcessoWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AcessoWebServiceSoap12" binding="tns:AcessoWebServiceSoap12">
+      <soap12:address location="http://localhost:56741/AcessoWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChamadaWeb.View;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,8 +11,8 @@ namespace ChamadaWeb
         public App()
         {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new Login());
+            //MainPage = new NavigationPage(new MylistPage());
         }
 
         protected override void OnStart()
